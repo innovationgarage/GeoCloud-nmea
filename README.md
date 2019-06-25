@@ -15,5 +15,5 @@ Usage:
     docker run \
       -p 1024:1024 \
       -p 1025:1025 \
-      -e 'CONFIG={"connections": [{"direction": "source", "type": "listen", "address": "tcp:1024"},{"direction": "destination", "type": "listen", "address": "tcp:1025"},{"direction": "destination", "type": "connect", "address": "tcp:localhost:1026"}]}' \
+      -e 'CONFIG={"connections": [{"handler": "source", "type": "listen", "address": "tcp:1024"},{"handler": "destination", "type": "listen", "address": "tcp:1025"},{"handler": "destination", "type": "connect", "address": "tcp:localhost:1026"}]}' \
       geocloud-nmea
