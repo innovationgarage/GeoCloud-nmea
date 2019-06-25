@@ -83,7 +83,7 @@ if __name__ == "__main__":
         handler = {"source": ReceiveHandler, "destination": SendHandler}[connection["direction"]]
         addr = connection["address"].split(":")
         assert addr[0] == "tcp"
-        host = "localhost"
+        host = "0.0.0.0"
         port = 1024
         if len(addr) == 2:
             port = addr[1]
