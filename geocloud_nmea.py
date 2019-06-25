@@ -7,6 +7,7 @@ import threading
 import json
 import queue
 import time
+import datetime
 
 senders = set()
 
@@ -44,6 +45,9 @@ class ReceiveHandler(object):
         self.conn = conn.makefile("r")
         for msg in ais.stream.decode(self.conn, keep_nmea=True):
             msg = ais.compatibility.gpsd.mangle(msg)
+            if "tagblock_timestamp" not in msg:
+                msg["tagblock_timestamp"] = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%fZ")
+            msg["timestamp"] = msg["tagblock_timestamp"]
             for sender in senders:
                 try:
                     sender.put(msg)
@@ -59,7 +63,6 @@ class SendHandler(object):
             
             while True:
                 msg = self.queue.get()
-                print("Sending", msg)
                 json.dump(msg, self.conn)
                 self.conn.write("\n")
                 self.conn.flush()
