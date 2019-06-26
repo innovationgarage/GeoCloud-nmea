@@ -1,6 +1,6 @@
 FROM ubuntu:18.04
 
-RUN echo 1
+RUN echo 3
 
 RUN apt update
 RUN apt install -y python3 python3-pip
