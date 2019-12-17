@@ -43,8 +43,11 @@ class SendHandler(socket_tentacles.SendHandler):
     def __hash__(self):
         return id(self)
         
-if __name__ == "__main__":
+def main(*arg, **kw):
     with open(sys.argv[1]) as f:
         config = json.load(f)
 
     socket_tentacles.run(config, {"source": ReceiveHandler, "destination": SendHandler})
+
+if __name__ == "__main__":
+    main()

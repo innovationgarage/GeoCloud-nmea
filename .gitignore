@@ -1,0 +1,5 @@
+config.json
+config.test.json
+*~
+*.egg-info
+env
