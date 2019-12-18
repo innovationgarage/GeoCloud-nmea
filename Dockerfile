@@ -7,8 +7,8 @@ RUN apt install -y python3 python3-pip
 
 RUN pip3 install libais==0.17
 RUN pip3 install socket-tentacles
+RUN pip3 install geocloud-nmea
 
 ADD server.sh /server.sh
-ADD geocloud_nmea.py /geocloud_nmea.py
 
 CMD ["/bin/bash", "/server.sh"]
